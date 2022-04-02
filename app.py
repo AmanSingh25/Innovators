@@ -76,7 +76,7 @@ def finance():
 def tech():
     collection = mongo.db.organizations_info
     # collection.insert_many(organizations_info)
-    organizations = collection.find({'types_of_org':'tech'})
+    organizations = collection.find({'types_of_org':'technology'})
     return render_template('tech.html', organizations = organizations)
 
 

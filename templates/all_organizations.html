@@ -1,8 +1,9 @@
+{% extends "index.html" %}
 <html>
-    <title>Organizations</title>
-    <body>
+    {% block title %} all organizations {% endblock %}
+    {% block body %}
         {% for orgs in organizations %}
         <p>{{orgs.organization_name}}</p>
-        {%endfor%}
-    </body>
+        {% endfor %}
+    {% endblock %}
 </html>
