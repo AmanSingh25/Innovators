@@ -1,0 +1,55 @@
+<html>
+  <head>
+     <link href="https://fonts.googleapis.com/css2?family=Syne+Tactile&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static\index.css">    
+      <div class="navbar">
+        <img src = "images\ourLogo.png">
+        <a href="contact.html"><strong>Contact Us</strong></a>
+        <div class="dropdown">
+          <button class="dropbtn"><strong>Business Areas</strong>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="/education">Education</a>
+            <a href="/finance">Finance</a>
+            <a href="/tech">Technology</a>
+            <a href="/addorg">Add your organization</a>
+            <a href="/all_organizations">All organizations</a>
+          </div>
+        </div>
+        <a href="index.html"><strong>Home</strong></a>
+      </div>
+  </head>
+  
+  <body>
+    <div class = "left-container">
+      <img src = "images\ourLogo.png">
+      <h1>BLACK GARDEN</h1>
+      <p> Our mission is to connect users to Black-owned businesses in tech, finance,and education. By displaying these businesses, we hope to aid in the financial aspect of sustaining a company long-term. With your help, these companies will prosper and it all starts with a small donation :)</p> 
+    </div>
+
+    <div class = "right-container">
+        <img src = "/images" alt = "Loading images" id="image">
+    </div>   
+    <script type = "text/javascript">   
+      let image = document.getElementById('image');
+      let images = ['/images/fintech.jpg', '/images/tech.png', '/images/education.png', '/images/computerPhoto.jpg']
+      setInterval(function(){
+        let random = Math.floor(Math.random() * 4);
+        image.src = images[random];
+      }, 2000);
+    </script>  
+  </body>
+
+   <footer>
+     <div class = "footer">
+        <p>Copyright &copy; 2022</p>
+        <a href = "#"><img src="images/insta.png"></a>
+        <a href = "#"><img src="images/linkedin.png"></a>
+        <a rel = "facebook" href = "#"><img src="images/facebook.png"></a>
+        <a href = "#"><img src="images/twitter.jpg"></a>        
+      </div>         
+  </footer>
+</html>
+  
+

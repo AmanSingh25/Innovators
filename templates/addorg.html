@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="static\form.css">    
+    <link href="https://fonts.googleapis.com/css2?family=Syne+Tactile&display=swap" rel="stylesheet">
+      <div class="navbar">
+        <img src = "images\ourLogo.png">
+        <a href="contact.html"><strong>Contact Us</strong></a>
+        <div class="dropdown">
+          <button class="dropbtn"><strong>Business Areas</strong>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="education.html">Education</a>
+            <a href="finance.html">Finance</a>
+            <a href="tech.html">Technology</a>
+            <a href="addorg.html">Add your organization</a>
+          </div>
+        </div>
+        <a href="index.html"><strong>Home</strong></a>
+      </div>
+  </head>
+  
+  <body>
+    <form method="POST" action="/addorg">
+      <div class = "formHead2">
+        <h2>Add your organization</h2>
+      </div>
+        <label class = "label"><strong>First Name</strong></label><br>
+          <div class = "box">
+            <input type = "text" name = "FirstName" placeholder = "Enter your first name" value = "">
+          </div> 
+
+        <div>
+            <label class = "label"><strong>Last Name</strong></label><br>
+            <div class = "box">
+            <input type = "text" name = "LastName" placeholder = "Enter your last name" value = "">
+        </div> 
+        
+        <div>
+            <label class = "label"><strong>Organization Name</strong></label><br>
+            <div class = "box">
+            <input type = "text" name = "OrganizationName" placeholder = "Enter your organization name" value = "">
+            </div>
+        </div>
+
+        <div>   
+            <label class = "label"><strong>Business Area</strong></label>
+            <div class = "box1">
+            <select name = "types_of_org">
+                <option value = "education">Education</option>
+                <option value = "finance">Finance</option>
+                <option value = "technology">Technology</option>
+                <option value = "other">Other</option>
+            </select> 
+            </div>               
+        </div>
+
+        <div>
+            <label class = "label">GoFundMe Link:</label><br>
+            <div class = "box">
+                <input type="url" name="gofundme" placeholder="your link" value = "">
+            </div>
+        </div>
+        
+        <div>   
+            <label class = "label"><strong>Mission</strong></label><br>
+            <div class = "box">
+            <textarea placeholder="Enter your Mission statement here" name = "mission-statement" value = ""></textarea>
+            </div>
+        </div>
+        <div>   
+        <div class = "submit">
+          <input type = "submit">
+        </div>
+        <br> 
+        <br>
+        </div>
+    </form>
+    <footer>
+       <div class = "footer">
+          <p>Copyright &copy; 2022</p>
+          <a href = "#"><img src="images/insta.png"></a>
+          <a href = "#"><img src="images/linkedin.png"></a>
+          <a rel = "facebook" href = "#"><img src="images/facebook.png"></a>
+          <a href = "#"><img src="images/twitter.jpg"></a>        
+        </div>         
+    </footer>
+</html>
+  
+

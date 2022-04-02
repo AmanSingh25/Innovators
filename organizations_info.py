@@ -1,0 +1,1 @@
+organizations_info = [{"firstName": "Random", "lastName": "lastName", "organization_name": "Bandwagon",  'mission-statement': "none", "gofundme": "https://www.gofundme.com/", "types_of_org": "education"}]
