@@ -20,10 +20,7 @@ app.config['MONGO_URI']= "mongodb+srv://innovators:ZOXFgRCwvlr34Nkl@cluster0.k8l
 
 mongo = PyMongo(app)
 #connect to MongoDB database
-#intialize database and collection variable
-#db = client.database
-# mongo.db.create_collection("organizations_info")
-# mongo.db.create_collection("user_info")
+
 
 secret_key = os.environ.get('MONGO_URI')
 # app.config['MONGO_URI'] = secret_key
@@ -46,8 +43,10 @@ def index():
 @app.route('/addorg', methods=["GET", "POST"])
 def new_organization():
     if request.method == "GET":
+        #render the form to populate the required parameters
         return render_template("addorg.html")
     else:
+        #assign from data to varaibles
         first_name = request.form['FirstName']
         last_name = request.form['LastName']
         organization_name = request.form['OrganizationName']    
@@ -55,34 +54,59 @@ def new_organization():
         image = request.form['image'] 
         go_fund_link= request.form['gofundme']
         mission = request.form['mission']
+
     collection = mongo.db.organizations_info
+
+     #insert an entry to the database using the variables declared above
     collection.insert_one({"firstName":first_name, "lastName":last_name, "organization_name":organization_name, "types_of_org":org_type, "gofundme": go_fund_link , "mission":mission, "image":image})
-    redirect('/')
+    return render_template('index.html')
 
 @app.route('/all_organizations')
 def all_organizations():
     collection = mongo.db.organizations_info
     # collection.insert_many(organizations_info)
+    # sort the database alphabetically based on their name and render all the organizations name to the page in sorted manner
     organizations = collection.find().sort('organization_name')
     return render_template('all_organizations.html', organizations = organizations)
-
+    
 @app.route('/education')
 def education():
     collection = mongo.db.organizations_info
+    #sort the database alphabetically based on their name and render all the organizations name related to education in sorted manner
     organizations = collection.find({'types_of_org':'education'}).sort('organization_name')
     return render_template('education.html', organizations = organizations)
 
 @app.route('/finance')
 def finance():
     collection = mongo.db.organizations_info
+    #sort the database alphabetically based on their name and render all the organizations name related to finance in sorted manner
     organizations = collection.find({'types_of_org':'finance'}).sort('organization_name')
     return render_template('finance.html', organizations = organizations)
 
 @app.route('/tech')
 def tech():
     collection = mongo.db.organizations_info
+    #sort the database alphabetically based on their name and render all the organizations name related to tech in sorted manner
     organizations = collection.find({'types_of_org':'technology'}).sort('organization_name')
     return render_template('tech.html', organizations = organizations)
+
+@app.route('/contact', methods = ['GET', 'POST'])
+def contact():
+    if request.method == "GET":
+    #render the form to populate the required parameters
+        return render_template("contact.html")
+    else:
+        #assign from data to varaibles
+        first_name = request.form['FirstName']
+        last_name = request.form['LastName']
+        email = request.form['email']
+        message = request.form['Message']
+
+    collection = mongo.db.contact_info
+
+     #insert an entry to the database using the variables declared above
+    collection.insert_one({"firstName" : first_name, "lastName" : last_name, "email" : email, "Message": message})
+    return render_template('index.html')
 
 #SIGNUP Route
 # @app.route('/signup', methods=['GET', 'POST'])

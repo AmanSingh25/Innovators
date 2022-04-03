@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Syne+Tactile&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static\form.css">    
+      <div class="navbar">
+        <img src = "../static/images/ourLogo.png">
+        <a href="/contact"><strong>Contact Us</strong></a>
+        <div class="dropdown">
+          <button class="dropbtn"><strong>Business Areas</strong>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="/all_organizations">All organizations</a>
+            <a href="/education">Education</a>
+            <a href="/finance">Finance</a>
+            <a href="/tech">Technology</a>
+            <a href="/addorg">Add your organization</a>
+          </div>
+        </div>
+        <a href="/index"><strong>Home</strong></a>
+      </div>
+  </head>
+  
+  <body>
+    <form method = "POST" action="/contact">
+      <div class = "formHead">
+        <h2>Contact Us</h2>
+      </div>
+        <label class = "label"><strong>First Name</strong></label><br>
+          <div class = "box">
+            <input type = "text" name = "FirstName" placeholder = "Enter your first name" value = "">
+          </div>  
+        <div>
+            <label class = "label"><strong>Last Name</strong></label><br>
+            <div class = "box">
+            <input type = "text" name = "LastName" placeholder = "Enter your last name" value = "">
+          </div>
+  
+        <div>
+            <label class = "label"><strong>Email</strong></label><br>
+            <div class = "box">
+            <input type = "email" name = "email" placeholder = "for example: xyz@gmail.com" value = "">
+        </div>
+
+        <div>   
+            <label class = "label"><strong>Message</strong></label><br>
+            <div class = "box">
+            <textarea placeholder="Enter your message here" name = "Message" value = ""></textarea>
+            </div>
+        </div>
+        <div>   
+        <div class = "submit">
+          <input type = "submit">
+        </div>
+        <br> 
+        <br>
+        </div>
+    </form>
+    <footer>
+       <div class = "footer">
+          <p>Copyright &copy; 2022</p>
+          <a href = "#"><img src="images/insta.png"></a>
+          <a href = "#"><img src="images/linkedin.png"></a>
+          <a rel = "facebook" href = "#"><img src="images/facebook.png"></a>
+          <a href = "#"><img src="images/twitter.jpg"></a>        
+        </div>         
+    </footer>
+</html>
+  
+
