@@ -1,4 +1,4 @@
-{% if session %}
+<!-- {% if session %}
  <p>Logged in as {{ session['username'] }}</p>
  <a href='/logout'>Log Out</a>
 {% else %}
@@ -35,4 +35,56 @@
     </form>
     <p><a href="/">Cancel</a></p>
 </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Log In or Sign Up</title>
+        <link rel="stylesheet" href="static\style.css">
+    </head>
+    <body class="main-container">
+        <div class="inner-container">
+            <div class="details">
+                <img class="main-logo" src="..\static\images\ourLogo.png" height="301" width="301">
+                <h2 class="info">
+                    Promote your organization and help other organization grow!
+                </h2>
+            </div>
+
+            <div class="login-container-out">
+                <div class="login-container-main">
+                    <div class="eplc">
+                        <form class="eplc-f" method = "POST" action="\signup">
+                            <div class="ep-div">
+                                <div class="e">
+                                    <div class="e-box">
+                                        <input type="text" class="e-input"placeholder="Username">
+                                    </div>
+                                </div>
+                                <div class="p">
+                                    <div class="p-box">
+                                        <input type="password" class="p-input" placeholder="Password">
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="l-div">
+                                <button class="l-button" type="submit">Sign Up</button>
+                            </div>
+                            <br>
+                            <div class="hr"></div>
+                            <div class="cna-div">
+                                <div class="cna-box">
+                                    <button class="cna-button">Log  In</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
