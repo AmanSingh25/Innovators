@@ -93,7 +93,7 @@ def logout():
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    return render_template('login.html')
 
 @app.route('/addorg', methods=["GET", "POST"])
 def new_organization():
@@ -164,3 +164,65 @@ def contact():
     return render_template('index.html')
 
 
+<<<<<<< HEAD
+=======
+ #SIGNUP Route
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == "POST":
+        users = mongo.db.users_info
+         #search for username in database
+        existing_user = users.find_one({'name': request.form['username']})
+
+         #if user not in database
+        if not existing_user:
+            username = request.form['username']
+             #encode password for hashing
+            password = request.form['password']
+             #hash password
+             # salt = bcrypt.gensalt()
+             # hashed = bcrypt.hashpw(password, salt)
+             #add new user to database
+            users.insert_one({'name': username, 'password': password})
+             #store username in session
+            session['username'] = request.form['username']
+            return redirect(url_for('signup'))
+
+        else:
+            return 'Username already registered.  Try logging in.'
+
+    else:
+        return render_template('signup.html')
+
+ #LOGIN Route
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == "POST":
+        users = mongo.db.users_info
+         #search for username in database
+        login_user = users.find_one({'name': request.form['username']})
+
+         #if username in database
+        if login_user:
+            db_password = login_user['password']
+             #encode password
+            password = request.form['password']
+             # compare username in database to username submitted in form
+            if password == db_password:
+                 #store username in session
+                session['username'] = request.form['username']
+                return render_template('index.html')
+            else:
+                return 'Invalid username/password combination.'
+        else:
+            return 'User not found.'
+    else:
+        return render_template('login.html')
+
+ #LOGOUT Route
+@app.route('/logout')
+def logout():
+     #clear username from session data
+    session.clear()
+    return redirect('/')
+>>>>>>> f316f3ec6adf0f0dfe454783184efa3126b962f7
