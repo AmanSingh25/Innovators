@@ -1,9 +1,30 @@
 {% extends "index.html" %}
 <html>
-    {% block title %}technology{% endblock %}
+    {% block title %}Education{% endblock %}
     {% block body %}
-        {% for orgs in organizations %}
-        <p>{{orgs.organization_name}}</p>
-        {% endfor %}
+    <div class=mainHeading>
+        <h1>Education</h1>
+    </div>
+        <div class="center">
+            {% for orgs in organizations %}
+            <h1 class="heading">{{orgs.organization_name}}</h1>
+            <img class="companyImage" src="{{orgs.image}}">
+            <p class = "content">{{orgs.mission}}</p> 
+            <div class = "btn">
+                <a aria-label='Thanks' class='h-button centered' data-text='GoFundMe' href= {{orgs.gofundme}}>
+                <span>T</span>
+                <span>h</span>
+                <span>a</span>
+                <span>n</span>
+                <span>k</span>
+                <span>s</span>
+                <span>:</span>
+                <span>)</span>
+                </a>   
+            {% endfor %}
+        </div>
+        <br>
+        <br>
+        <br>
     {% endblock %}
 </html>

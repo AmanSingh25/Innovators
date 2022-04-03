@@ -1,0 +1,38 @@
+{% if session %}
+ <p>Logged in as {{ session['username'] }}</p>
+ <a href='/logout'>Log Out</a>
+{% else %}
+ <a href='/login'>Log In</a>
+ <a href='/signup'>Sign Up</a>
+{% endif %}
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+          background-color: brown;
+        }
+        </style>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='templates/login.css') }}">
+    <title>Log In</title>
+</head>
+<body>
+    <h1>Log In</h1>
+    <form method="post" action="/login">
+
+      <label for="username">username:</label>
+      <input type="text" name="username" value="">
+
+      <label for="password">password:</label>
+      <input type="password" name="password" value="">
+
+      <input type="submit" value="Submit">
+    </form>
+    <p><a href="/">Cancel</a></p>
+</body>
+</html>
