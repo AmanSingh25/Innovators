@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Log In or Sign Up</title>
@@ -11,37 +12,35 @@
                     Promote your organization and help other organization grow!
                 </h2>
             </div>
+
             <div class="login-container-out">
                 <div class="login-container-main">
                     <div class="eplc">
-                        <form class="eplc-f" method = "POST" action="\login">
+                        <form class="eplc-f" method = "POST" action="/login">
                             <div class="ep-div">
                                 <div class="e">
                                     <div class="e-box">
-                                        <input type="text" class="e-input"placeholder="user name">
-                                <div class="e">
-                                    <div class="e-box">
-                                        <input type="text" class="e-input"placeholder="Username">
+                                        <input type="text" class="e-input"placeholder="username" name = "username" value = "">
                                     </div>
                                 </div>
                                 <div class="p">
                                     <div class="p-box">
-                                        <input type="password" class="p-input" placeholder="Password">
+                                        <input type="password" class="p-input" placeholder="Password" name = "password" value = "">
                                     </div>
                                 </div>
                                 <br>
                             </div>
                             <div class="l-div">
-                                <button class="l-button" type="submit">Log In</button>
+                                <button class="l-button" type="submit">Log in</button>
                             </div>
                             <br>
                             <div class="hr"></div>
-                            <div class="cna-div">
-                                <div class="cna-box">
-                                    <button class="cna-button">Sign Up</button>
-                                </div>
-                            </div>
                         </form>
+                        <div class="cna-div">
+                            <div class="cna-box">
+                                <a href = "/signup"><button class="cna-button">Sign Up</button></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
