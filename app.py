@@ -82,7 +82,7 @@ def signup():
 #index route
 @app.route('/index')
 def index():
-    return render_template('login.html')
+    return render_template('index.html')
 
 @app.route('/addorg', methods=["GET", "POST"])
 def new_organization():
@@ -150,6 +150,6 @@ def contact():
 
      #insert an entry to the database using the variables declared above
     collection.insert_one({"firstName" : first_name, "lastName" : last_name, "email" : email, "Message": message})
-    return render_template('index.html')
+    return "Thank you for your response! We will get in touch soon :)"
 
  
