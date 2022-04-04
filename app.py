@@ -51,7 +51,7 @@ def login():
             else:
                 return 'Invalid username/password combination.'
         else:
-            return 'User not found. Please try logging in'
+            return 'User not found. Please try Signing in'
     else:
         return render_template('login.html')
 
