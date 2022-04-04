@@ -1,5 +1,3 @@
-
-#import section
 import os
 from flask import Flask
 from flask import render_template
@@ -7,7 +5,7 @@ from flask import request, redirect, session, url_for
 from flask_pymongo import PyMongo
 import secrets
 from organizations_info import organizations_info
-
+import bcrypt
 
 app = Flask(__name__)
 # LG5-YwAi@eXncpV
@@ -34,6 +32,34 @@ mongo = PyMongo(app)
 
 #LOGIN Route
 @app.route('/')
+@app.route('/signup', methods=['GET', 'POST'])
+def singup():
+    if request.method == "POST":
+        users = mongo.db.users_info
+        #search for username in database
+        existing_user = users.find_one({'name': request.form['username']})
+
+        #if user not in database
+        if not existing_user:
+            username = request.form['username']
+            #encode password for hashing
+            password = (request.form['password']).encode("utf-8")
+            #hash password
+            salt = bcrypt.gensalt()
+            hashed = bcrypt.hashpw(password, salt)
+            #add new user to database
+            users.insert_one({'name': username, 'password': hashed})
+            #store username in session
+            session['username'] = request.form['username']
+            return redirect(url_for('login'))
+
+        else:
+            return 'Username already registered.  Try logging in.'
+    
+    else:
+        return render_template('signup.html')
+
+#LOGIN Route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
@@ -45,39 +71,20 @@ def login():
         if login_user:
             db_password = login_user['password']
             #encode password
-            password = request.form['password']
-            # compare username in database to username submitted in form
-            if password == db_password:
+            password = request.form['password'].encode("utf-8")
+            #compare username in database to username submitted in form
+            if bcrypt.checkpw(password, db_password):
                 #store username in session
-                session['username'] = request.form['username']
+                # session['username'] = request.form['username']
                 return render_template('index.html')
             else:
                 return 'Invalid username/password combination.'
         else:
-            return "User not found.Sign up, if you haven't already"
+            return 'User not found.'
     else:
         return render_template('login.html')
 
-# SIGNUP Route'
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    if request.method == "POST":
-        users = mongo.db.users_info
-        #search for username in database
-        existing_user = users.find_one({'name': request.form['username']})
 
-        #if user not in database
-        if not existing_user:
-            username = request.form['username']
-            password = request.form['password']
-            users.insert_one({'name': username, 'password': password})
-            #store username in session
-            # session['username'] = request.form['username']
-            return redirect(url_for('signup'))
-        else:
-            return 'Username already registered.  Try logging in.'  
-    else:
-        return render_template('signup.html')
 
 #index route
 @app.route('/index')
