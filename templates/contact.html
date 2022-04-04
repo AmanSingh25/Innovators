@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="static\form.css">    
       <div class="navbar">
         <img src = "../static/images/ourLogo.png">
+        <a href="/logout"><strong>Log out</strong></a> 
+        <a href="#"><strong>logged as {{ session['username'] }}</strong></a>
         <a href="/contact"><strong>Contact Us</strong></a>
         <div class="dropdown">
           <button class="dropbtn"><strong>Business Areas</strong>
@@ -59,10 +61,10 @@
     <footer>
        <div class = "footer">
           <p>Copyright &copy; 2022</p>
-          <a href = "#"><img src="images/insta.png"></a>
-          <a href = "#"><img src="images/linkedin.png"></a>
-          <a rel = "facebook" href = "#"><img src="images/facebook.png"></a>
-          <a href = "#"><img src="images/twitter.jpg"></a>        
+          <a href = "#"><img src="../static/images/email.jpg"></a>
+          <a href = "#"><img src="../static/images/linkedin.png"></a>
+          <a rel = "facebook" href = "#"><img src="../static/images/facebook.png"></a>
+          <a href = "#"><img src="../static/images/twitter.jpg"></a>  
         </div>         
     </footer>
 </html>

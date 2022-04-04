@@ -1,14 +1,13 @@
 import os
 from flask import Flask
 from flask import render_template
-from flask import request, redirect, session, url_for
+from flask import request, redirect, session, url_for, session
 from flask_pymongo import PyMongo
 import secrets
 from organizations_info import organizations_info
 import bcrypt
 
 app = Flask(__name__)
-# LG5-YwAi@eXncpV
 #Name Of Database
 app.config['MONGO_DBNAME'] = 'database'
 
@@ -29,7 +28,7 @@ app.secret_key = secrets.token_urlsafe(16)
 #Initialize PyMongo
 mongo = PyMongo(app)
 
-
+#-----Route Section--------------------------------
 #LOGIN Route
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
@@ -47,12 +46,12 @@ def login():
             #compare username in database to username submitted in form
             if bcrypt.checkpw(password, db_password):
                 #store username in session
-                # session['username'] = request.form['username']
+                session['username'] = request.form['username']
                 return render_template('index.html')
             else:
                 return 'Invalid username/password combination.'
         else:
-            return 'User not found.'
+            return 'User not found. Please try logging in'
     else:
         return render_template('login.html')
 
@@ -76,13 +75,18 @@ def singup():
             users.insert_one({'name': username, 'password': hashed})
             #store username in session
             session['username'] = request.form['username']
-            return render_template('login.html')
-
+            return redirect(url_for('login'))
         else:
-            return 'Username already registered.  Try logging in.'
-    
+            return 'Username already registered.Try logging in.'  
     else:
         return render_template('signup.html')
+
+#Logout route
+@app.route('/logout')
+def logout():
+    #clear username from session data
+    session.clear()
+    return redirect('/')
 
 #index route
 @app.route('/index')
@@ -111,6 +115,7 @@ def new_organization():
     collection.insert_one({"firstName":first_name, "lastName":last_name, "organization_name":organization_name, "types_of_org":org_type, "gofundme": go_fund_link , "mission":mission, "image":image})
     return render_template('index.html')
 
+#allorg rouute
 @app.route('/all_organizations')
 def all_organizations():
     collection = mongo.db.organizations_info
@@ -119,6 +124,7 @@ def all_organizations():
     organizations = collection.find().sort('organization_name')
     return render_template('all_organizations.html', organizations = organizations)
     
+#education route
 @app.route('/education')
 def education():
     collection = mongo.db.organizations_info
@@ -126,6 +132,7 @@ def education():
     organizations = collection.find({'types_of_org':'education'}).sort('organization_name')
     return render_template('education.html', organizations = organizations)
 
+#finance route
 @app.route('/finance')
 def finance():
     collection = mongo.db.organizations_info
@@ -133,6 +140,7 @@ def finance():
     organizations = collection.find({'types_of_org':'finance'}).sort('organization_name')
     return render_template('finance.html', organizations = organizations)
 
+#technology route
 @app.route('/tech')
 def tech():
     collection = mongo.db.organizations_info
@@ -140,6 +148,7 @@ def tech():
     organizations = collection.find({'types_of_org':'technology'}).sort('organization_name')
     return render_template('tech.html', organizations = organizations)
 
+#contact us route
 @app.route('/contact', methods = ["GET", "POST"])
 def contact():
     if request.method == "GET":

@@ -4,6 +4,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne+Tactile&display=swap" rel="stylesheet">
       <div class="navbar">
         <img src = "..\static\images\ourLogo.png">
+        <a href="/logout"><strong>Log out</strong></a> 
+        <a href="#"><strong>logged as {{ session['username'] }}</strong></a>
         <a href="/contact"><strong>Contact Us</strong></a>
         <div class="dropdown">
           <button class="dropbtn"><strong>Business Areas</strong>
